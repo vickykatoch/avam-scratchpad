@@ -19,10 +19,16 @@ export class AvmHypergridComponent implements OnInit {
 
   ngOnInit() {
     const win = windowRef();
-    this.buildData();
-    this.grid = new win.fin.Hypergrid(this.gridContainer.nativeElement, { data: this.data});
+    // this.grid = new win.fin.Hypergrid(this.gridContainer.nativeElement, this.getGridOptions());
+    // this.grid.setBackgroundColor('red');
   }
-
+  private getGridOptions() : any {
+    this.buildData();
+    return {
+      data : this.data,
+      margin: { bottom: '17px', right: '17px'}
+    };
+  }
   private buildData() {
     this.data = [
           {

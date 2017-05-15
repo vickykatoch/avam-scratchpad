@@ -1,3 +1,4 @@
+import { AvamCanvasGridModule } from './avam-canvas-grid/avam-canvas-grid.module';
 import { AvmHypergridModule } from './avm-hypergrid/index';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,7 +16,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AvmHypergridModule
+    AvmHypergridModule,
+    AvamCanvasGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
