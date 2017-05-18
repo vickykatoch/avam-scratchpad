@@ -22,7 +22,7 @@
         "styles.scss"
       ],
       "scripts": [
-        
+        "fin-grid/fin-hypergrid.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

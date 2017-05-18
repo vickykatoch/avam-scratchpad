@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-const Hypergrid = require('fin-hypergrid').default;
+
 
 @Component({
   selector: 'avam-canvas-grid',
@@ -11,7 +11,7 @@ export class AvamCanvasGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger;
+    
     
   }
 

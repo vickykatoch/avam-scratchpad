@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Utils } from '../utils/Utils';
 import * as _ from 'lodash';
 
 
@@ -18,8 +19,9 @@ export class AvmHypergridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+      
     const win = windowRef();
-    // this.grid = new win.fin.Hypergrid(this.gridContainer.nativeElement, this.getGridOptions());
+    this.grid = new win.fin.Hypergrid(this.gridContainer.nativeElement, this.getGridOptions());
     // this.grid.setBackgroundColor('red');
   }
   private getGridOptions() : any {
@@ -28,6 +30,22 @@ export class AvmHypergridComponent implements OnInit {
       data : this.data,
       margin: { bottom: '17px', right: '17px'}
     };
+  }
+  modifyData() : void {
+      setInterval(() => {
+          const index : number = Utils.getRandomNum(0,31);
+          if(index>=0 && index<50) {
+            let item : any = this.data[index];
+            // console.log(this.data[index]);
+            item['Name'] = 'Balwinder';
+            item['Code'] = 'NYC';
+            item['Area'] = Utils.getRandomNum(1000,5000);
+            this.grid.repaint();
+          }
+      }, 250);
+    //   this.data[0].Name = "Balwinder Katoch";
+    //   this.data[0].Code = "NY";
+    //   this.data[0].Area = "08852";
   }
   private buildData() {
     this.data = [
