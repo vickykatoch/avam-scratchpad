@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Utils } from '../utils/Utils';
 import * as _ from 'lodash';
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/observable/interval';
+import { Subscription } from "rxjs/Subscription";
 
 
 let windowRef = () : any => window;
@@ -14,9 +17,11 @@ export class AvmHypergridComponent implements OnInit {
   @ViewChild('gridcontainer') gridContainer;
   private grid            : any;
   private data            : any[] = [];
+  private subscription      : Subscription;
 
-
-  constructor() { }
+  constructor() { 
+      
+  }
 
   ngOnInit() {
       
@@ -32,20 +37,23 @@ export class AvmHypergridComponent implements OnInit {
     };
   }
   modifyData() : void {
-      setInterval(() => {
-          const index : number = Utils.getRandomNum(0,31);
-          if(index>=0 && index<50) {
-            let item : any = this.data[index];
-            // console.log(this.data[index]);
-            item['Name'] = 'Balwinder';
-            item['Code'] = 'NYC';
-            item['Area'] = Utils.getRandomNum(1000,5000);
-            this.grid.repaint();
-          }
-      }, 250);
-    //   this.data[0].Name = "Balwinder Katoch";
-    //   this.data[0].Code = "NY";
-    //   this.data[0].Area = "08852";
+      if(!this.subscription || this.subscription.closed) {
+        this.subscription = Observable.interval(250)
+                            .subscribe(this.startSendingData.bind(this));
+      } else {
+          this.subscription.unsubscribe();
+      }      
+  }
+  private startSendingData() {
+    const index : number = Utils.getRandomNum(0,31);
+    if(index>=0 && index<50) {
+        let item : any = this.data[index];
+        item['Name'] = 'New York';
+        item['Code'] = 'NYC';
+        item['Area'] = Utils.getRandomNum(1000,5000);
+        item['Population'] = Utils.getRandomNum(100000,5000000);
+        this.grid.repaint();
+    }
   }
   private buildData() {
     this.data = [
