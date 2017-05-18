@@ -18,6 +18,8 @@ export class AvmHypergridComponent implements OnInit {
   private grid            : any;
   private data            : any[] = [];
   private subscription      : Subscription;
+  private states  = ['New York', 'New Jersey', 'Pennsylvania', 'Washington DC', 'Chicago', 'Texas'];
+  private codes  = ['NY', 'NN', 'PA', 'WDC', 'OH', 'TX'];
 
   constructor() { 
       
@@ -48,10 +50,11 @@ export class AvmHypergridComponent implements OnInit {
     const index : number = Utils.getRandomNum(0,31);
     if(index>=0 && index<50) {
         let item : any = this.data[index];
-        item['Name'] = 'New York';
-        item['Code'] = 'NYC';
+        item['Name'] = this.states[Utils.getRandomNum(0,5)];
+        item['Code'] = this.codes[Utils.getRandomNum(0,5)];
         item['Area'] = Utils.getRandomNum(1000,5000);
         item['Population'] = Utils.getRandomNum(100000,5000000);
+        item['House Seats'] = Utils.getRandomNum(10,88);
         this.grid.repaint();
     }
   }
