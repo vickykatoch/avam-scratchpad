@@ -45,11 +45,14 @@ export class AvmHypergridComponent implements OnInit {
     this.treeGrid.setData(this.treeGrid.plugins.computeEngine._data);
     this.treeGrid.addProperties({
         showTreeColumn: true,
+        treeHeaderColor : 'green',
+        enableContinuousRepaint : false,
         columnHeaderBackgroundColor: 'pink',
         columnHeaderFont: '15px Tahoma, Geneva, sans-serif',
         columnHeaderColor: 'darkblue',
         defaultRowHeight: 25,
         defaultFixedRowHeight: 20,
+        scrollbarHoverOff : 'visible',
         defaultColumnWidth: 100,
         defaultFixedColumnWidth: 40,
         rows: {
