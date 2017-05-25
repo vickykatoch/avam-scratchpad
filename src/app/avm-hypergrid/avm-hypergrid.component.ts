@@ -1,3 +1,5 @@
+import { ComputeEngine } from './computeEngine';
+import { GridSorter } from './grid-Sorter';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Utils } from '../utils/Utils';
 import * as _ from 'lodash';
@@ -10,16 +12,20 @@ let windowRef = () : any => window;
 
 @Component({
   selector: 'avm-hypergrid',
-  templateUrl: './avm-hypergrid.component.html',
-  styleUrls: ['./avm-hypergrid.component.scss']
+  templateUrl: 'avm-hypergrid.component.html',
+  styleUrls: ['avm-hypergrid.component.scss']
 })
 export class AvmHypergridComponent implements OnInit {
   @ViewChild('gridcontainer') gridContainer;
+  @ViewChild('treeGrid') treeGridContainer;
   private grid            : any;
+  private treeGrid            : any;
   private data            : any[] = [];
   private subscription      : Subscription;
   private states  = ['New York', 'New Jersey', 'Pennsylvania', 'Washington DC', 'Chicago', 'Texas'];
   private codes  = ['NY', 'NN', 'PA', 'WDC', 'OH', 'TX'];
+  private index : Array<any>;
+  
 
   constructor() { 
       
@@ -28,14 +34,53 @@ export class AvmHypergridComponent implements OnInit {
   ngOnInit() {
       
     const win = windowRef();
-    this.grid = new win.fin.Hypergrid(this.gridContainer.nativeElement, this.getGridOptions());
-    // this.grid.setBackgroundColor('red');
+    // this.grid = new win.fin.Hypergrid(this.gridContainer.nativeElement, this.getGridOptions());
+    // this.grid.installPlugins(GridSorter);
+
+    
+    this.treeGrid = new win.fin.Hypergrid(this.gridContainer.nativeElement,{
+        Behavior: win.fin.Hypergrid.behaviors.JSON
+    });
+    this.treeGrid.installPlugins([ComputeEngine]);
+    this.treeGrid.setData(this.treeGrid.plugins.computeEngine._data);
+    this.treeGrid.addProperties({
+        showTreeColumn: true,
+        columnHeaderBackgroundColor: 'pink',
+        columnHeaderFont: '15px Tahoma, Geneva, sans-serif',
+        columnHeaderColor: 'darkblue',
+        defaultRowHeight: 25,
+        defaultFixedRowHeight: 20,
+        defaultColumnWidth: 100,
+        defaultFixedColumnWidth: 40,
+        rows: {
+            header: {
+                0: {
+                    height: 30
+                }
+            }
+        }
+    });
+    this.treeGrid.plugins.computeEngine.toggleGroups();
+  }
+  toggleGroup() : void {
+      this.treeGrid.plugins.computeEngine.toggleGroups();
   }
   private getGridOptions() : any {
     this.buildData();
     return {
       data : this.data,
-      margin: { bottom: '17px', right: '17px'}
+      margin: { bottom: '17px', right: '17px'},
+      state: { color: 'black' },
+      defaultRowHeight: 30,
+      cellPadding: 20,
+      defaultFixedRowHeight: 20,
+      rows: {
+            header: {
+                0: {
+                    height: 40
+                }
+            }
+        }
     };
   }
   modifyData() : void {
@@ -463,4 +508,5 @@ export class AvmHypergridComponent implements OnInit {
           }
       ];
   }
+  
 }

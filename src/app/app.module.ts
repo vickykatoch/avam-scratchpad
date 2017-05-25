@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AvamGridComponent } from './avam-grid/avam-grid.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    AvamGridComponent
+],
   imports: [
     BrowserModule,
     FormsModule,
