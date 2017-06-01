@@ -7,12 +7,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AvamGridComponent } from './avam-grid/avam-grid.component';
+import { AvamOrderBlotterComponent } from './avam-order-blotter/avam-order-blotter.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AvamGridComponent
+    AvamGridComponent,
+    AvamOrderBlotterComponent
 ],
   imports: [
     BrowserModule,
