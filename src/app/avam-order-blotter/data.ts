@@ -404,4 +404,9 @@ export class DataHelper {
                   }
             ];
       }
+      static getSchema() : any {
+            return [
+                  { name : "Name" }
+            ];
+      }
 }
