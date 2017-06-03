@@ -1,3 +1,4 @@
+import { Utils } from './../utils/Utils';
 import { IOrder } from './model';
 import { ClientDataProviderService } from './data-provider.service';
 import { DataSimulatorService } from './data-simulator.service';
