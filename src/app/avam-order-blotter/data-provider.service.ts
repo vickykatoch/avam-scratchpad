@@ -3,7 +3,7 @@ import { IOrder } from './model';
 import { Injectable } from '@angular/core';
 
 
-const SYMBOLS                 = ['2_YEAR', '3_YEAR','5_YEAR', '7_YEAR','10_YEAR', '30_YEAR', 'ED1', 'ED2', 'ED3', 'ED4', 'ED5', 'ED6', 'ED7', 'ED8'];
+const SYMBOLS                 = ['2_YEAR', '3_YEAR','5_YEAR'];
 
 
 @Injectable()
