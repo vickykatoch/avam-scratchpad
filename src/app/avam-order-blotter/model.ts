@@ -1,10 +1,5 @@
 export interface IOrder {
+      symbol            : string;
       orderId           : string;
       price             : number;
-      qty               : number;
-      remainingQty      : number;
-      status            : string;
-      children?         : any;
-      reason?           : string;
-      exchange          : string;
 }

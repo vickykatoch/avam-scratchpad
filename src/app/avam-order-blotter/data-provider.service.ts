@@ -2,8 +2,8 @@ import { Utils } from './../utils/Utils';
 import { IOrder } from './model';
 import { Injectable } from '@angular/core';
 
-const STATUS_LIST = ['NEW', 'FILLED', 'CANCELLED', 'PARTIALLY_FILLED', 'SUSPENDED'];
 
+const SYMBOLS                 = ['2_YEAR', '3_YEAR','5_YEAR', '7_YEAR','10_YEAR', '30_YEAR', 'ED1', 'ED2', 'ED3', 'ED4', 'ED5', 'ED6', 'ED7', 'ED8'];
 
 
 @Injectable()
@@ -17,20 +17,30 @@ export class ClientDataProviderService {
 
       private generateNewOrderData(count: number) : IOrder[] {
             return <IOrder[]>[{
-                  orderId           : '1',
-                  qty               : 10,
-                  price             : 100.23,
-                  remainingQty      : 5,
-                  status            : 'CANCELLED',
-                  reason            : '',
-                  exchange          : 'S-CASH'
+                  symbol            : this.getRandomValueFromArray(SYMBOLS),
+                  orderId           : this.generateUUID(),                  
+                  price             : this.getRandomNumber(99.30,103.75, true),                                 
             }];
       }
-      private getRandomIndexFromArray(array: any[]) : any {
+      private getRandomValueFromArray(array: any[]) : any {
             const index = Utils.getRandomNum(0,array.length);
             return array[index];
       }
       private generateOrderId() {
             return '';
+      }
+      private getRandomNumber(min: number, max: number, dec?: boolean) : number {
+            return Math.floor((Math.random() * max) + min);
+      }
+      private generateUUID () { // Public Domain/MIT
+            let d = new Date().getTime();
+            if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
+                  d += performance.now(); //use high-precision timer if available
+            }
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                  var r = (d + Math.random() * 16) % 16 | 0;
+                  d = Math.floor(d / 16);
+                  return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
       }
 }
