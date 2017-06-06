@@ -1,13 +1,17 @@
-var app = require('express')();
-var server = require('http').Server(app);
+const app = require('express')();
+var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-server.listen(6000);
 
-io.on('connection', function (socket) {
-      console.log('Client Connected')
-      socket.emit('live-data', { hello: 'world' });
+app.get('/api/test', function (req, res) {
+      console.log('Request Received');
+      res.send('Hello World!');
+});
 
-      // socket.on('my other event', function (data) {
-      //       console.log(data);
-      // });
+// io.on('connection', function (socket) {
+//       console.log('Client Connected')
+//       socket.emit('live-data', { hello: 'world' });
+// });
+
+server.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
 });
