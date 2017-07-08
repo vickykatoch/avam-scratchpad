@@ -8,13 +8,15 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AvamGridComponent } from './avam-grid/avam-grid.component';
 import { AvamOrderBlotterComponent } from './avam-order-blotter/avam-order-blotter.component';
+import { AvamMktComponent } from './avam-mkt/avam-mkt.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AvamGridComponent,
-    AvamOrderBlotterComponent
+    AvamOrderBlotterComponent,
+    AvamMktComponent
 ],
   imports: [
     BrowserModule,

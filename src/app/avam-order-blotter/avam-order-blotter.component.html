@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col text-right">
+    <span>Orders : {{orderCount}}</span>
+  </div>
+  <div class="col text-right">
+    <button class="btn btn-sm btn-primary" (click)="onStart()">Start</button>
+    <button class="btn btn-sm btn-primary" (click) = "onStop()">Stop</button>
+    <input type="checkbox"  (click)="onUpdate($event.target.checked)">
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col grid-host d-flex flex-row" >
+      <div class="align-self-stretch" #gridHost>
+        
+      </div>
+  </div>
+</div>
